@@ -1,58 +1,53 @@
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
+    public static ArrayList<AccountBank> accountBank = new ArrayList<>();
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        AccountBank accBank = new AccountBank();
-        ArrayList<AccountBank> banks = new ArrayList<>();
-
-        System.out.println("Enter account number: ");
+        AccountBank accountBank1 = new AccountBank();
+        System.out.println("Welcome to E-Bank");
+        System.out.println("Please enter the number of accounts : ");
         String accountNumber = sc.nextLine();
-        System.out.println("Enter account name: ");
-        String accountName = sc.nextLine();
-        System.out.println("Enter account balance: ");
+        System.out.println("Please enter the account name : ");
+        String accountHolderName = sc.nextLine();
+        System.out.println("Please enter your account balance : ");
         double accountBalance = sc.nextDouble();
         sc.nextLine();
+        accountBank1.setAccountNumber(accountNumber);
+        accountBank1.setAccountHolderName(accountHolderName);
+        accountBank1.setBalance(accountBalance);
+        System.out.println("Your account balance : "+ accountBank1.getBalance());
+        System.out.println("Test despoit method.");
+        sc.nextLine();
+        double despoitAmount = sc.nextDouble();
+        System.out.println("Despoit amount : " + despoitAmount);
+        accountBank1.deposit(despoitAmount);
+        System.out.println("Your account balance : "+ accountBank1.getBalance());
 
-        banks.add(accBank);
-        accBank.setAccountNumber(accountNumber);
-        accBank.setAccountHolderName(accountNumber);
-        accBank.setBalance(accountBalance);
-        System.out.println("Successfully added account !");
-
-
-        while(true){
-            System.out.println("Enter your choice : ");
-            System.out.println("1.Deposit");
-            System.out.println("2.Withdraw");
-            System.out.println("3.Transfer");
-            System.out.println("4.Check Balance");
-            System.out.println("0.Exit");
-            System.out.println("Your choice is:");
-            int choice = sc.nextInt();
-            sc.nextLine();
-
-            switch(choice){
-                case 1:
-                    System.out.println("");
-                    break;
-                case 2:
-                    System.out.println("");
-                    break;
-                case 3:
-                    System.out.println("");
-                    break;
-                case 4:
-                    System.out.println("");
-                    break;
-
-            }if(choice == 0) {
-                System.out.println("Thank you for using our system, goodbye and good luck ");
-                break;
-            }
-        }
-
-
+        System.out.println("Test withdraw method.");
+//      double withdrawAmount = sc.nextDouble();
+        double withdrawAmount = 5000;
+        System.out.println("Withdraw amount : " + withdrawAmount);
+        accountBank1.withdraw(withdrawAmount);
+        System.out.println("Your account after withdraw is : "+ accountBank1.getBalance());
+        System.out.println("Test transfer method.");
+        AccountBank destinationAccountBank = new AccountBank();
+        destinationAccountBank.setAccountNumber("007");
+        destinationAccountBank.setAccountHolderName("Trong Trinh");
+        destinationAccountBank.setBalance(10000);
+        accountBank.add(destinationAccountBank);
+        accountBank.add(accountBank1);
+        destinationAccountBank.displayAccountInfo();
+        accountBank.add(destinationAccountBank);
+        accountBank1.transfer("013",5000);
+        System.out.println("After transfer method");
+        System.out.println("My Account");
+        accountBank1.displayAccountInfo();
+        System.out.println("Destination Account");
+        destinationAccountBank.displayAccountInfo();
     }
 }
